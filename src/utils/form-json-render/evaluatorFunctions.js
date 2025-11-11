@@ -49,9 +49,12 @@ function evaluateCondition(conditions, watchValues) {
 }
 
 export function evaluateVisibility(field, watchValues) {
+  console.log('field', field);
   if (!field.visibleWhen) return true;
 
   // Evaluate the top-level condition (visibleWhen)
-  return evaluateCondition([field.visibleWhen], watchValues);
+  const result = evaluateCondition([field.visibleWhen], watchValues);
+  console.log('result', result);
+  return result;
 }
 

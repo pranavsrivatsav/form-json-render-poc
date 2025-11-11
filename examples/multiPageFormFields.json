@@ -1,0 +1,150 @@
+{
+  "pages": [
+    {
+      "title": "Personal Information",
+      "description": "Please provide your basic personal details",
+      "fields": [
+        {
+          "name": "firstName",
+          "type": "text",
+          "label": "First Name",
+          "required": true,
+          "validations": [
+            {
+              "rule": "minLength",
+              "value": 2
+            },
+            {
+              "rule": "maxLength",
+              "value": 50
+            }
+          ]
+        },
+        {
+          "name": "lastName",
+          "type": "text",
+          "label": "Last Name",
+          "required": true,
+          "validations": [
+            {
+              "rule": "minLength",
+              "value": 2
+            },
+            {
+              "rule": "maxLength",
+              "value": 50
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Contact Details",
+      "description": "How can we reach you?",
+      "fields": [
+        {
+          "name": "email",
+          "type": "email",
+          "label": "Email Address",
+          "maxLength": 70,
+          "required": true
+        },
+        {
+          "name": "phone",
+          "type": "text",
+          "label": "Phone Number",
+          "required": false,
+          "maxLength": 10,
+          "validations": [
+            {
+              "rule": "matches",
+              "value": "^[0-9]{10}$"
+            }
+          ]
+        },
+        {
+          "name": "country",
+          "type": "select",
+          "label": "Country",
+          "required": true,
+          "options": [
+            {
+              "value": "us",
+              "display": "United States"
+            },
+            {
+              "value": "uk",
+              "display": "United Kingdom"
+            },
+            {
+              "value": "ca",
+              "display": "Canada"
+            },
+            {
+              "value": "au",
+              "display": "Australia"
+            },
+            {
+              "value": "de",
+              "display": "Germany"
+            },
+            {
+              "value": "fr",
+              "display": "France"
+            },
+            {
+              "value": "in",
+              "display": "India"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Additional Information",
+      "description": "Tell us more about yourself",
+      "fields": [
+        {
+          "name": "company",
+          "type": "text",
+          "label": "Company Name",
+          "required": false,
+          "maxLength": 100,
+          "validations": [
+            {
+              "rule": "maxLength",
+              "value": 100
+            }
+          ]
+        },
+        {
+          "name": "jobTitle",
+          "type": "text",
+          "label": "Job Title",
+          "required": false,
+          "maxLength": 50,
+          "validations": [
+            {
+              "rule": "maxLength",
+              "value": 50
+            }
+          ]
+        },
+        {
+          "name": "message",
+          "type": "textarea",
+          "label": "Message",
+          "required": false,
+          "maxLength": 500,
+          "validations": [
+            {
+              "rule": "maxLength",
+              "value": 500
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

@@ -1,4 +1,5 @@
 import {
+  EmailInput,
   SelectInput,
   TextAreaInput,
   TextInput,
@@ -12,6 +13,8 @@ export const getFieldComponent = (type) => {
       return SelectInput;
     case 'textarea':
       return TextAreaInput;
+    case 'email':
+      return EmailInput;
     default:
       return null;
   }

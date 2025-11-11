@@ -3,7 +3,17 @@ import * as yup from 'yup';
 function buildYupSchema(fields) {
   const shape = {};
 
-  fields.forEach((field) => {
+  // Normalize input: support both single-page (array) and multi-page (object with pages) formats
+  let allFields = [];
+  if (fields && typeof fields === 'object' && !Array.isArray(fields) && fields.pages) {
+    // Multi-page format: extract all fields from all pages
+    allFields = fields.pages.flatMap((page) => page.fields || []);
+  } else if (Array.isArray(fields)) {
+    // Single-page format: array of fields
+    allFields = fields;
+  }
+
+  allFields.forEach((field) => {
     let validator;
 
     switch (field.type) {
