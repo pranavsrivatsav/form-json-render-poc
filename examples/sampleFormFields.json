@@ -1,0 +1,148 @@
+[
+  {
+    "name": "firstName",
+    "type": "text",
+    "label": "First Name",
+    "required": true,
+    "maxLength": 50,
+    "validations": [
+      {
+        "rule": "minLength",
+        "value": 2
+      },
+      {
+        "rule": "maxLength",
+        "value": 50
+      }
+    ]
+  },
+  {
+    "name": "lastName",
+    "type": "text",
+    "label": "Last Name",
+    "required": true,
+    "maxLength": 50,
+    "validations": [
+      {
+        "rule": "minLength",
+        "value": 2
+      },
+      {
+        "rule": "maxLength",
+        "value": 50
+      }
+    ]
+  },
+  {
+    "name": "email",
+    "type": "email",
+    "label": "Email Address",
+    "maxLength": 70,
+    "required": true
+  },
+  {
+    "name": "phone",
+    "type": "text",
+    "label": "Phone Number",
+    "required": false,
+    "maxLength": 10,
+    "validations": [
+      {
+        "rule": "matches",
+        "value": "^[0-9]{10}$"
+      }
+    ]
+  },
+  {
+    "name": "age",
+    "type": "number",
+    "label": "Age",
+    "required": false,
+    "validations": [
+      {
+        "rule": "min",
+        "value": 18
+      },
+      {
+        "rule": "max",
+        "value": 100
+      }
+    ]
+  },
+  {
+    "name": "country",
+    "type": "select",
+    "label": "Country",
+    "required": true,
+    "options": [
+      {
+        "value": "us",
+        "display": "United States"
+      },
+      {
+        "value": "uk",
+        "display": "United Kingdom"
+      },
+      {
+        "value": "ca",
+        "display": "Canada"
+      },
+      {
+        "value": "au",
+        "display": "Australia"
+      },
+      {
+        "value": "de",
+        "display": "Germany"
+      },
+      {
+        "value": "fr",
+        "display": "France"
+      },
+      {
+        "value": "in",
+        "display": "India"
+      }
+    ]
+  },
+  {
+    "name": "message",
+    "type": "textarea",
+    "label": "Message",
+    "required": false,
+    "maxLength": 500,
+    "validations": [
+      {
+        "rule": "maxLength",
+        "value": 500
+      }
+    ]
+  },
+  {
+    "name": "company",
+    "type": "text",
+    "label": "Company Name",
+    "required": false,
+    "maxLength": 100,
+    "validations": [
+      {
+        "rule": "maxLength",
+        "value": 100
+      }
+    ]
+  },
+  {
+    "name": "jobTitle",
+    "type": "text",
+    "label": "Job Title",
+    "required": false,
+    "maxLength": 50,
+    "validations": [
+      {
+        "rule": "maxLength",
+        "value": 50
+      }
+    ]
+  }
+]
+
