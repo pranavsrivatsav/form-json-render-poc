@@ -15,6 +15,8 @@ export const getFieldComponent = (type) => {
       return TextAreaInput;
     case 'email':
       return EmailInput;
+    case 'number':
+      return TextInput;
     default:
       return null;
   }

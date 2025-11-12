@@ -1,4 +1,5 @@
 function checkCondition(depValue, operator, value) {
+  console.log('checkCondition', depValue, operator, value);
   switch (operator) {
     case 'equals':
       return depValue === value;
@@ -24,7 +25,7 @@ function evaluateCondition(conditions, watchValues) {
 
   return conditions.every((condition) => {
     // If the condition has an operator (AND/OR), process it recursively
-    if (condition.operator) {
+    if (['and', 'or'].includes(condition.operator)) {
       if (condition.operator === 'and') {
         return condition.conditions.every(({ operator, field: depField, value }) => {
           const depValue = watchValues[depField];
@@ -39,7 +40,8 @@ function evaluateCondition(conditions, watchValues) {
         });
       }
     } else {
-      // If no operator, it's just a simple condition
+      // If not 'and' or 'or', it's just a simple condition
+      console.log('resolving check condition');
       const depValue = watchValues[condition.field];
       return checkCondition(depValue, condition.operator, condition.value);
     }
@@ -49,9 +51,9 @@ function evaluateCondition(conditions, watchValues) {
 }
 
 export function evaluateVisibility(field, watchValues) {
-  console.log('field', field);
   if (!field.visibleWhen) return true;
-
+  
+  console.log('field', field);
   // Evaluate the top-level condition (visibleWhen)
   const result = evaluateCondition([field.visibleWhen], watchValues);
   console.log('result', result);

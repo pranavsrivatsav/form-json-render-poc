@@ -26,7 +26,7 @@ function buildYupSchema(fields) {
         break;
 
       case 'number':
-        validator = yup.number().typeError(`${field.label} must be a number`);
+        validator = yup.number();
         break;
 
       case 'checkbox':

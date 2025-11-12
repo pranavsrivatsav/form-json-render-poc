@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import RHFController from '../../hocs/RHFController';
 import { getFieldComponent } from '../../utils/form-json-render/miscUtils';
+import { evaluateVisibility } from '../../utils/form-json-render/evaluatorFunctions';
 
 const FormJsonRenderer = ({ fields, methods, validateOnPageChange = true }) => {
   // Normalize input: support both single-page (array) and multi-page (object with pages) formats
@@ -24,12 +25,16 @@ const FormJsonRenderer = ({ fields, methods, validateOnPageChange = true }) => {
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
   const currentPage = pages[currentPageIndex] || pages[0];
   const currentFields = currentPage?.fields || [];
+  const formValues = methods.watch();
+  const visibleFields = useMemo(() => {
+    return currentFields.filter((field) => evaluateVisibility(field, formValues)).map((field) => field.name);
+  }, [currentFields, formValues]);
 
   const handleNext = async () => {
     if (currentPageIndex < pages.length - 1) {
       if (validateOnPageChange) {
         // Validate only fields on current page
-        const fieldNames = currentFields.map((field) => field.name);
+        const fieldNames = visibleFields;
         const isValid = await methods.trigger(fieldNames);
         if (!isValid) {
           return; // Don't proceed if validation fails
@@ -95,7 +100,7 @@ const FormJsonRenderer = ({ fields, methods, validateOnPageChange = true }) => {
           if (!FieldComponent) return null;
 
           return (
-            <div key={field.name}>
+            <div key={field.name} className={visibleFields.includes(field.name) ? 'block' : 'hidden'}>
               <RHFController
                 name={field.name}
                 control={methods.control}

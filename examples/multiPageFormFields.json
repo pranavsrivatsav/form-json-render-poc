@@ -97,6 +97,18 @@
               "display": "India"
             }
           ]
+        },
+        {
+          "name": "socialSecurityNumber",
+          "type": "number",
+          "label": "Social Security Number",
+          "required": true,
+          "maxLength": 9,
+          "visibleWhen": {
+            "field": "country",
+            "operator": "equals",
+            "value": "us"
+          }
         }
       ]
     },
@@ -147,4 +159,3 @@
     }
   ]
 }
-

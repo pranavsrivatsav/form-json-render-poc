@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import CustomizedTextArea from '../common-components/customized-textarea/CustomizedTextArea';
 import CustomizedTextField from '../common-components/customized-textfield/CustomizedTextField';
 
-export const TextInput = ({ rhfField, rhfFieldState, label, maxLength }) => (
+export const TextInput = ({ rhfField, rhfFieldState, label, maxLength, type }) => (
   <>
     <div className="flex flex-row items-center gap-2 w-full">
       <div className="min-w-[8rem] flex-shrink-0">
@@ -14,6 +14,7 @@ export const TextInput = ({ rhfField, rhfFieldState, label, maxLength }) => (
       </div>
       <div className="flex-1 max-w-[20rem]">
         <CustomizedTextField
+          type={type === 'number' ? 'number' : 'text'}
           {...rhfField}
           {...rhfFieldState}
           className="w-full"
@@ -198,46 +199,4 @@ EmailInput.propTypes = {
   rhfFieldState: PropTypes.object.isRequired,
   label: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
-};
-
-export const NumberInput = ({ rhfField, rhfFieldState, label, min, max }) => (
-  <>
-    <div className="flex flex-row gap-2 w-full">
-      <div className="min-w-[8rem] flex-shrink-0 pt-[0.600rem]">
-        <Typography variant="body2" className="!text-[#666666]">
-          {label}
-        </Typography>
-      </div>
-      <div className="flex-1">
-        <input
-          type="number"
-          {...rhfField}
-          className={`w-full border rounded-md p-2 ${
-            rhfFieldState.error ? "border-red-500" : "border-gray-300"
-          }`}
-          min={min}
-          max={max}
-        />
-      </div>
-    </div>
-    {/* Error message */}
-    {rhfFieldState.error && (
-      <div className="flex flex-row gap-2 w-full">
-        {/* Dummy label to keep the layout consistent - and show the error message under the input */}
-        <div className="min-w-[8rem] flex-shrink-0 pt-[0.600rem]">
-          <Typography variant="body2" className="!text-[#666666] invisible">
-            {label}
-          </Typography>
-        </div>
-      </div>
-    )}
-  </>
-);
-
-NumberInput.propTypes = {
-  rhfField: PropTypes.object.isRequired,
-  rhfFieldState: PropTypes.object.isRequired,
-  label: PropTypes.string.isRequired,
-  min: PropTypes.number,
-  max: PropTypes.number,
 };

@@ -24,7 +24,9 @@ const CustomizedTextField = (props) => {
             ...rest.InputProps,
           },
           htmlInput: {
-            maxLength: rest.maxLength
+            maxLength: rest.type === 'text' ? rest.maxLength : undefined,
+            max: rest.type === 'number' && rest.maxLength ? Number("9".repeat(rest.maxLength)) : rest.max,
+            min: rest.min,
           }
         }}
       />
